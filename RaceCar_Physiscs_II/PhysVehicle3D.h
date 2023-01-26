@@ -2,6 +2,7 @@
 
 #include "PhysBody3D.h"
 #include "glmath.h"
+#include "Application.h"
 
 class btRaycastVehicle;
 struct PhysBody3D;
