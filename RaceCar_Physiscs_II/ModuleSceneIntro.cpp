@@ -22,12 +22,28 @@ bool ModuleSceneIntro::Start()
 	Sphere s(3);
 	s.color = Green;
 	s.SetPos(0, 0, 30);
-	Ball = App->physics->AddBody(s, 100);
-	
+	Ball = App->physics->AddBody(s, 100.0f);
+
 	//Map
-	Cube c(1000, 5, 1000);
+	Cube c(500, 5, 500);
 	c.color = White;
 	Ground = App->physics->AddBody(c, 0.0f);
+
+	Cube w(500, 500, 5);
+	w.SetPos(0, 5, 250);
+	Ground = App->physics->AddBody(w, 0.0f);
+
+	Cube we(500, 500, 5);
+	we.SetPos(0, 5, -250);
+	Ground = App->physics->AddBody(we, 0.0f);
+
+	Cube wi(5, 500, 500);
+	wi.SetPos(250, 5, 0);
+	Ground = App->physics->AddBody(wi, 0.0f);
+
+	Cube wo(5, 500, 500);
+	wo.SetPos(-250, 5, 0);
+	Ground = App->physics->AddBody(wo, 0.0f);
 
 	return ret;
 }
@@ -53,15 +69,16 @@ update_status ModuleSceneIntro::Update(float dt)
 	Ball->GetTransform(&s.transform);
 	s.Render();
 
-	Cube c(1000, 5, 1000);
+	Cube c(500, 5, 500);
 	c.color = White;
+	c.SetPos(0, 0, 0);
 	c.Render();
 
 	if (App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
 	{
 		App->camera->first = !App->camera->first;
 	}
-
+	
 	return UPDATE_CONTINUE;
 }
 

@@ -63,14 +63,14 @@ update_status ModuleCamera3D::Update(float dt)
 	if (first)
 	{
 		Position.x = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() /*- 10 * App->player->vehicle->vehicle->getForwardVector().getX()*/;
-		Position.y = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() + 5;
-		Position.z = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() - 3/*- 50  * App->player->vehicle->vehicle->getForwardVector().getZ();*/;
+		Position.y = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() + 5 * App->player->vehicle->vehicle->getUpAxis();
+		Position.z = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() /*- 50  * App->player->vehicle->vehicle->getForwardVector().getZ();*/;
 	}
 	else
 	{
-		Position.x = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() - 10 * App->player->vehicle->vehicle->getForwardVector().getX();
-		Position.y = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() + 15 * App->player->vehicle->vehicle->getUpAxis();
-		Position.z = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() - 50  * App->player->vehicle->vehicle->getForwardVector().getZ();
+		Position.x = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() - 15 * (App->player->vehicle->vehicle->getForwardVector().getX()*2);
+		Position.y = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() + 15 * (App->player->vehicle->vehicle->getUpAxis()*2);
+		Position.z = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() - 15 * (App->player->vehicle->vehicle->getForwardVector().getZ()*2);
 	}
 	float playerPosX = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() + 10 * App->player->vehicle->vehicle->getForwardVector().getX();
 	float playerPosZ = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() + 10 * App->player->vehicle->vehicle->getForwardVector().getZ();

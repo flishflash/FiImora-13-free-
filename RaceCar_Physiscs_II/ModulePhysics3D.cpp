@@ -73,7 +73,7 @@ bool ModulePhysics3D::Start()
 update_status ModulePhysics3D::PreUpdate(float dt)
 {
 	world->stepSimulation(dt, 15);
-
+	world->setGravity(GRAVITY);
 	int numManifolds = world->getDispatcher()->getNumManifolds();
 	for(int i = 0; i<numManifolds; i++)
 	{
@@ -118,6 +118,12 @@ update_status ModulePhysics3D::Update(float dt)
 	if(debug == true)
 	{
 		world->debugDrawWorld();
+
+		if (App->input->GetKey(SDL_SCANCODE_G) == KEY_REPEAT)
+		{
+			if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN) GRAVITY += btVector3(0.0f, -1.0f, 0.0f);
+			if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN) GRAVITY -= btVector3(0.0f, -1.0f, 0.0f);
+		}
 
 		// Render vehicles
 		p2List_item<PhysVehicle3D*>* item = vehicles.getFirst();

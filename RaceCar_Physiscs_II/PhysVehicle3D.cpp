@@ -46,7 +46,6 @@ void PhysVehicle3D::Render()
 	offset = offset.rotate(q.getAxis(), q.getAngle());
 	chassis.color = Red;
 
-
 	chassis.transform.M[12] += offset.getX();
 	chassis.transform.M[13] += offset.getY();
 	chassis.transform.M[14] += offset.getZ();
