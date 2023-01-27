@@ -60,14 +60,23 @@ update_status ModuleCamera3D::Update(float dt)
 
 	Position += newPos;
 	Reference += newPos;
-
-	Position.x = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() - 10 * App->player->vehicle->vehicle->getForwardVector().getX();
-	Position.y = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() + 15 * App->player->vehicle->vehicle->getUpAxis();
-	Position.z = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() - 20 * App->player->vehicle->vehicle->getForwardVector().getZ();
+	if (first)
+	{
+		Position.x = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() /*- 10 * App->player->vehicle->vehicle->getForwardVector().getX()*/;
+		Position.y = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() + 5;
+		Position.z = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() - 3/*- 50  * App->player->vehicle->vehicle->getForwardVector().getZ();*/;
+	}
+	else
+	{
+		Position.x = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() - 10 * App->player->vehicle->vehicle->getForwardVector().getX();
+		Position.y = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() + 15 * App->player->vehicle->vehicle->getUpAxis();
+		Position.z = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() - 50  * App->player->vehicle->vehicle->getForwardVector().getZ();
+	}
 	float playerPosX = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() + 10 * App->player->vehicle->vehicle->getForwardVector().getX();
 	float playerPosZ = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() + 10 * App->player->vehicle->vehicle->getForwardVector().getZ();
+	float playerPosY = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() + 10 * App->player->vehicle->vehicle->getForwardVector().getY();
 
-	LookAt(vec3(playerPosX, 1, playerPosZ));
+	LookAt(vec3(playerPosX, playerPosY, playerPosZ));
 
 	// Mouse motion ----------------
 

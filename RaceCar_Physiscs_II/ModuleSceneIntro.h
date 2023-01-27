@@ -21,6 +21,8 @@ public:
 
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
 
+	void AddWall(vec3 initPos, vec3 finalPos, int walls, bool right);
+
 public:
 	/*
 	PhysBody3D* pb_snake[MAX_SNAKE];
@@ -41,4 +43,7 @@ public:
 
 	PhysMotor3D* left_wheel;
 	PhysMotor3D* right_wheel;
+
+	PhysBody3D* Ball;
+	PhysBody3D* Ground;
 };

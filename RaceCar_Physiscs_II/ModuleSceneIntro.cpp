@@ -18,7 +18,16 @@ bool ModuleSceneIntro::Start()
 	LOG("Loading Intro assets");
 	bool ret = true;
 
-	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
+	//Ball
+	Sphere s(3);
+	s.color = Green;
+	s.SetPos(0, 0, 30);
+	Ball = App->physics->AddBody(s, 100);
+	
+	//Map
+	Cube c(1000, 5, 1000);
+	c.color = White;
+	Ground = App->physics->AddBody(c, 0.0f);
 
 	return ret;
 }
@@ -38,10 +47,26 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.axis = true;
 	p.Render();
 
+	Sphere s(3);
+	s.color = Green;
+	s.SetPos(0, 0, 30);
+	Ball->GetTransform(&s.transform);
+	s.Render();
+
+	Cube c(1000, 5, 1000);
+	c.color = White;
+	c.Render();
+
+	if (App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
+	{
+		App->camera->first = !App->camera->first;
+	}
+
 	return UPDATE_CONTINUE;
 }
 
 void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
 }
+
 
