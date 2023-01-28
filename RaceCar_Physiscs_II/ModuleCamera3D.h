@@ -28,6 +28,8 @@ public:
 		
 	bool first = false;
 
+	int focus = 0;
+
 private:
 
 	mat4x4 ViewMatrix, ViewMatrixInverse;

@@ -115,6 +115,9 @@ update_status ModulePlayer::Update(float dt)
 {
 	turn = acceleration = 0.0f;
 	brake = 10.0f;
+	int n = 0;
+	n++;
+	if (vehicle->vehicle->getWheelInfo(0).m_raycastInfo.m_groundObject == NULL) LOG("%d", n)
 
 	if(App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
 	{
@@ -138,9 +141,14 @@ update_status ModulePlayer::Update(float dt)
 		acceleration = -MAX_ACCELERATION;
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
+	if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT)
 	{
 		brake = BRAKE_POWER;
+	}
+	
+	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
+	{
+		acceleration = MAX_ACCELERATION*3;
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
@@ -152,6 +160,32 @@ update_status ModulePlayer::Update(float dt)
 	{
 		if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN) car.mass += 10.0f;
 		if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN) car.mass -= 10.0f;
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && vehicle->vehicle->getWheelInfo(0).m_raycastInfo.m_groundObject != NULL)
+	{
+		vehicle->Push(0.0f, 10000.0f, 0.0f);
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN && forces == true)
+	{
+		car.suspensionStiffness = 0.0f;
+		car.suspensionCompression = 0.0f;
+		car.suspensionDamping = 0.0f;
+		car.maxSuspensionTravelCm = 0.0f;
+		car.frictionSlip = 0.0f;
+		car.maxSuspensionForce = 0.0f;
+		forces = false;
+	}
+	if (App->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN && forces == false)
+	{
+		car.suspensionStiffness = 15.88f;
+		car.suspensionCompression = 0.83f;
+		car.suspensionDamping = 0.88f;
+		car.maxSuspensionTravelCm = 1000.0f;
+		car.frictionSlip = 50.5;
+		car.maxSuspensionForce = 6000.0f;
+		forces = true;
 	}
 
 	vehicle->ApplyEngineForce(acceleration);

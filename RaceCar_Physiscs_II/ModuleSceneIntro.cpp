@@ -22,7 +22,7 @@ bool ModuleSceneIntro::Start()
 	Sphere s(3);
 	s.color = Green;
 	s.SetPos(0, 0, 30);
-	Ball = App->physics->AddBody(s, 100.0f);
+	Ball = App->physics->AddBody(s, 50.0f);
 
 	//Map
 	Cube c(500, 5, 500);
@@ -78,7 +78,9 @@ update_status ModuleSceneIntro::Update(float dt)
 	{
 		App->camera->first = !App->camera->first;
 	}
-	
+	if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) App->camera->focus = 0;
+	if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN) App->camera->focus = 1;
+
 	return UPDATE_CONTINUE;
 }
 
