@@ -209,7 +209,7 @@ update_status ModulePlayer::Update(float dt)
 	}
 	else
 	{
-		sprintf_s(title, "Time: %d s", segundos);
+		sprintf_s(title, "Liga Roquete || Time: %d s", segundos);
 		App->window->SetTitle(title);
 	}
 
