@@ -1,2 +1,5 @@
 ﻿  ModulePlayer.cpp
+C:\Users\lapiz\OneDrive\Documentos\GitHub\Worms\RaceCar-Physics-II\RaceCar_Physiscs_II\ModulePlayer.cpp(197,15): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\lapiz\OneDrive\Documentos\GitHub\Worms\RaceCar-Physics-II\RaceCar_Physiscs_II\ModulePlayer.cpp(207,33): warning C4474: "sprintf_s": se pasaron demasiados argumentos para la cadena de formato
+C:\Users\lapiz\OneDrive\Documentos\GitHub\Worms\RaceCar-Physics-II\RaceCar_Physiscs_II\ModulePlayer.cpp(207,33): message : los marcadores de posición y sus parámetros esperan 0 argumentos variádicos, pero se proporcionaron 1
   3D Physics.vcxproj -> C:\Users\lapiz\OneDrive\Documentos\GitHub\Worms\RaceCar-Physics-II\RaceCar_Physiscs_II\Debug\3D Physics - class5.exe

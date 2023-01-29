@@ -30,6 +30,10 @@ public:
 
 	int focus = 0;
 
+	float playerPosX;
+	float playerPosY;
+	float playerPosZ;
+
 private:
 
 	mat4x4 ViewMatrix, ViewMatrixInverse;

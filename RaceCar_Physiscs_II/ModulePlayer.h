@@ -18,6 +18,8 @@ public:
 	bool Start();
 	update_status Update(float dt);
 	bool CleanUp();
+	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
+	int timesup = 120;
 
 public:
 
@@ -26,4 +28,7 @@ public:
 	float acceleration;
 	float brake;
 	bool forces=true;
+
+	bool win = false;
+	bool lose = false;
 };

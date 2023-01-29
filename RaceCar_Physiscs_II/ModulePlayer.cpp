@@ -115,90 +115,128 @@ update_status ModulePlayer::Update(float dt)
 {
 	turn = acceleration = 0.0f;
 	brake = 10.0f;
-	int n = 0;
-	n++;
-	if (vehicle->vehicle->getWheelInfo(0).m_raycastInfo.m_groundObject == NULL) LOG("%d", n)
 
-	if(App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+	if (!win && !lose)
 	{
-		acceleration = MAX_ACCELERATION;
-	}
+		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+		{
+			acceleration = MAX_ACCELERATION;
+		}
 
-	if(App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
-	{
-		if(turn < TURN_DEGREES)
-			turn +=  TURN_DEGREES;
-	}
+		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+		{
+			if (turn < TURN_DEGREES)
+				turn += TURN_DEGREES;
+		}
 
-	if(App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-	{
-		if(turn > -TURN_DEGREES)
-			turn -= TURN_DEGREES;
-	}
+		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+		{
+			if (turn > -TURN_DEGREES)
+				turn -= TURN_DEGREES;
+		}
 
-	if(App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
-	{
-		acceleration = -MAX_ACCELERATION;
-	}
+		if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+		{
+			acceleration = -MAX_ACCELERATION;
+		}
 
-	if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT)
-	{
-		brake = BRAKE_POWER;
-	}
-	
-	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
-	{
-		acceleration = MAX_ACCELERATION*3;
-	}
+		if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT)
+		{
+			brake = BRAKE_POWER;
+		}
 
-	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
-	{
-		vehicle->Reset(0);
+		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
+		{
+			acceleration = MAX_ACCELERATION * 3;
+		}
+
+		if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
+		{
+			vehicle->Reset(0);
+		}
+
+		if (App->input->GetKey(SDL_SCANCODE_M) == KEY_REPEAT)
+		{
+			if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN) car.mass += 10.0f;
+			if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN) car.mass -= 10.0f;
+		}
+
+		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && vehicle->vehicle->getWheelInfo(0).m_raycastInfo.m_groundObject != NULL)
+		{
+			vehicle->Push(0.0f, 10000.0f, 0.0f);
+		}
+
+		if (App->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN && forces == true)
+		{
+			car.suspensionStiffness = 0.0f;
+			car.suspensionCompression = 0.0f;
+			car.suspensionDamping = 0.0f;
+			car.maxSuspensionTravelCm = 0.0f;
+			car.frictionSlip = 0.0f;
+			car.maxSuspensionForce = 0.0f;
+			forces = false;
+		}
+		if (App->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN && forces == false)
+		{
+			car.suspensionStiffness = 15.88f;
+			car.suspensionCompression = 0.83f;
+			car.suspensionDamping = 0.88f;
+			car.maxSuspensionTravelCm = 1000.0f;
+			car.frictionSlip = 50.5;
+			car.maxSuspensionForce = 6000.0f;
+			forces = true;
+		}
+
+		vehicle->ApplyEngineForce(acceleration);
+		vehicle->Turn(turn);
+		vehicle->Brake(brake);
+
+		vehicle->Render();
 	}
-
-	if (App->input->GetKey(SDL_SCANCODE_M) == KEY_REPEAT)
-	{
-		if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN) car.mass += 10.0f;
-		if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN) car.mass -= 10.0f;
-	}
-
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && vehicle->vehicle->getWheelInfo(0).m_raycastInfo.m_groundObject != NULL)
-	{
-		vehicle->Push(0.0f, 10000.0f, 0.0f);
-	}
-
-	if (App->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN && forces == true)
-	{
-		car.suspensionStiffness = 0.0f;
-		car.suspensionCompression = 0.0f;
-		car.suspensionDamping = 0.0f;
-		car.maxSuspensionTravelCm = 0.0f;
-		car.frictionSlip = 0.0f;
-		car.maxSuspensionForce = 0.0f;
-		forces = false;
-	}
-	if (App->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN && forces == false)
-	{
-		car.suspensionStiffness = 15.88f;
-		car.suspensionCompression = 0.83f;
-		car.suspensionDamping = 0.88f;
-		car.maxSuspensionTravelCm = 1000.0f;
-		car.frictionSlip = 50.5;
-		car.maxSuspensionForce = 6000.0f;
-		forces = true;
-	}
-
-	vehicle->ApplyEngineForce(acceleration);
-	vehicle->Turn(turn);
-	vehicle->Brake(brake);
-
-	vehicle->Render();
-
 	char title[80];
-	sprintf_s(title, "%.1f Km/h", vehicle->GetKmh());
-	App->window->SetTitle(title);
+	int segundos = (App->tiempo/1000) - ((timesup-120));
+
+	if (segundos >= timesup || lose==true)
+	{
+		sprintf_s(title, "TimesUp!! YOU LOSE!!!");
+		App->window->SetTitle(title);
+		lose = true;
+	}
+	else if (win)
+	{
+		sprintf_s(title, "YOU WIN!!", segundos);
+		App->window->SetTitle(title);
+	}
+	else
+	{
+		sprintf_s(title, "Time: %d s", segundos);
+		App->window->SetTitle(title);
+	}
+
+	if(lose)
+	{
+		App->physics->debug = true;
+		if (App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
+		{
+			lose = false; segundos = timesup;	timesup += 120;
+		}
+	}
+	if (win)
+	{
+		App->physics->debug = true;
+		if (App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
+		{
+			win = false; segundos = 0;	timesup += 120;
+			vehicle->SetPos(0, 5, 0);
+			vehicle->Reset(0);
+		}
+		App->scene_intro->Ball->SetPos(0, 0, 30);
+	}
 
 	return UPDATE_CONTINUE;
+}
+void ModulePlayer::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
+{
 }
 
 

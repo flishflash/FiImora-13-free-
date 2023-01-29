@@ -1,5 +1,6 @@
 #include "Application.h"
 
+
 Application::Application()
 {
 	window = new ModuleWindow(this);
@@ -78,6 +79,7 @@ void Application::PrepareUpdate()
 // ---------------------------------------------
 void Application::FinishUpdate()
 {
+	tiempo = startupTime.ReadSecs();
 }
 
 // Call PreUpdate, Update and PostUpdate on all modules

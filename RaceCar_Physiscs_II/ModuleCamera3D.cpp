@@ -72,9 +72,9 @@ update_status ModuleCamera3D::Update(float dt)
 		Position.y = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() + 15 * (App->player->vehicle->vehicle->getUpAxis()*2);
 		Position.z = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() - 20 * (App->player->vehicle->vehicle->getForwardVector().getZ()*2);
 	}
-	float playerPosX = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() + 10 * App->player->vehicle->vehicle->getForwardVector().getX();
-	float playerPosZ = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() + 10 * App->player->vehicle->vehicle->getForwardVector().getZ();
-	float playerPosY = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() + 10 * App->player->vehicle->vehicle->getForwardVector().getY();
+	playerPosX = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() + 10 * App->player->vehicle->vehicle->getForwardVector().getX();
+	playerPosZ = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() + 25 * App->player->vehicle->vehicle->getForwardVector().getZ();
+	playerPosY = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() + 10 * App->player->vehicle->vehicle->getForwardVector().getY();
 
 	float ballPosX = App->scene_intro->Ball->GetPos().getX() + 10 * App->player->vehicle->vehicle->getForwardVector().getX();
 	float ballPosZ = App->scene_intro->Ball->GetPos().getZ() + 10 * App->player->vehicle->vehicle->getForwardVector().getZ();

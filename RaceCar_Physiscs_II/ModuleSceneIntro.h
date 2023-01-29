@@ -9,6 +9,12 @@
 struct PhysBody3D;
 struct PhysMotor3D;
 
+struct Porterias {
+	PhysBody3D* body;
+	Cube colorBody;
+	bool gol;
+};
+
 class ModuleSceneIntro : public Module
 {
 public:
@@ -21,7 +27,7 @@ public:
 
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
 
-	void AddWall(vec3 initPos, vec3 finalPos, int walls, bool right);
+	void ModuleSceneIntro::AddCube(vec3 position, vec3 size, int angle, bool rotateX, bool rotateY, bool rotateZ);
 
 public:
 	/*
@@ -46,4 +52,9 @@ public:
 
 	PhysBody3D* Ball;
 	PhysBody3D* Ground;
+
+	p2List<Cube> sceneryCubes;
+
+	Porterias porteriaB;
+	Porterias porteriaA;
 };

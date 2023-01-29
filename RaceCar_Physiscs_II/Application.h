@@ -40,6 +40,9 @@ public:
 	update_status Update();
 	bool CleanUp();
 
+	float tiempo;
+	Timer	startupTime;
+
 private:
 
 	void AddModule(Module* mod);

@@ -15,11 +15,14 @@ public:
 	void Stop();
 
 	Uint32 Read();
+	Uint32 ReadSecs() const;
+	void Restart();
 
 private:
 
 	bool	running;
 	Uint32	started_at;
+	Uint32	startTime;
 	Uint32	stopped_at;
 };
 
