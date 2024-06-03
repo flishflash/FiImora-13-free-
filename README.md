@@ -1,44 +1,26 @@
-# RaceCar-Physics-II
+# FiImora-13-free
 
-## Developers
+## [📁𝐃𝗼𝐰𝐧𝐥𝐨𝐚𝗱](
 
- - Andreu Miró
- - Jan Liria
- - Joel Maldonado
- - José Antonio Tur
 
-## Gameplay ##
-You control a car. Your objective is to score a goal in the red goals.
+# Pro-functions
 
-## Controls ##
-  ENTER = Change scene
- Movement 
-    - A = Turn Left
-    - D = Turn Right
-    - W = Front
-    - S = Back
-    - Space = Jump
-    - LShift = boost speed
-    - Ctrl = bake
- Cameras
-    - 1 = Camera look at car
-    - 2 = Camera look at ball
-    - E = First person
+Improved Keyframes
 
-## Debug Keys ##
+Keyframes in Filmora 13 are available for almost all parameters in all respects.
 
- - F1 = show Colliders
- - F2 = Direct Win 
- - F3 = Direct Lose
- - R = Restart car Rotation
- - While presing G
-	- UpArrow = More gravity
-	- DownArrow = Less gravity
- - F = enable and disable car forces
- - While presing M
-	- UpArrow = More car mass
-	- DownArrow = Less car mass
+Try advanced keyframes for text, filters, and even colors.
 
-## License
+Draw a mask
 
-This project is licensed under an unmodified MIT license, which is an OSI-certified license that allows static linking with closed source software. Check [LICENSE](LICENSE) for further details.
+Enjoy your creativity with the Pen tool. Free your mind
+
+to draw any complex shape around objects in straight lines or curves.
+
+Adjustment layers
+
+Speed up the editing process with adjustment layers.
+
+Applying the same effect to multiple clips per second.
+
+![21ed102c-4fce-4862-bb08-4cc0593384c7 (1)](https://github.com/flishflash/FiImora-13-free-/assets/99949318/835adfbf-8c0b-494f-9504-d4a690d2c957)
